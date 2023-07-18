@@ -1,6 +1,11 @@
 package com.ipi.jva320.model;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,6 +23,7 @@ public class SalarieAideADomicile {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank(message="Requis !")
     private String nom;
 
     public static List<DayOfWeek> joursHabituellementTravailles = new ArrayList<DayOfWeek>();
@@ -48,7 +54,6 @@ public class SalarieAideADomicile {
     }
 
     public SalarieAideADomicile(String nom, LocalDate moisDebutContrat, LocalDate moisEnCours,
-                                //LinkedHashSet<LocalDate> congesPayesPris,
                                 double joursTravaillesAnneeN, double congesPayesAcquisAnneeN,
                                 double joursTravaillesAnneeNMoins1, double congesPayesAcquisAnneeNMoins1, double congesPayesPrisAnneeNMoins1) {
         this.nom = nom;
@@ -217,7 +222,8 @@ public class SalarieAideADomicile {
     public void setMoisDebutContrat(LocalDate moisDebutContrat) {
         this.moisDebutContrat = moisDebutContrat;
     }
-    
+
+
 
     @Override
     public boolean equals(Object o) {
